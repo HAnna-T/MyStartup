@@ -4,13 +4,23 @@ import Step from "./components/Step";
 import { DATA } from "./data/data";
 
 function App() {
+  let count = false;
+  function checkerHandler(data) {
+    count = data;
+    console.log(data);
+  }
+
   return (
     <div>
       <h1>My StartUp Progress</h1>
-      {/* <Step title="Foundation" list={["one", "two", "tree"]} number="2" /> */}
       {DATA.map((item, index) => {
         return (
-          <Step title={item.title} list={item.subSteps} number={index + 1} />
+          <Step
+            title={item.title}
+            list={item.subSteps}
+            number={index + 1}
+            getChecker={checkerHandler}
+          />
         );
       })}
     </div>

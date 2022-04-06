@@ -1,6 +1,6 @@
-import { faLessThanEqual } from "@fortawesome/free-solid-svg-icons";
 import React, { useState } from "react";
 import "./Step.css";
+import { FaCheck } from "@react-icons/all-files/fa/FaCheck";
 
 function Step(props) {
   const [checkedSteps, setCheckedSteps] = useState(
@@ -8,20 +8,22 @@ function Step(props) {
   );
 
   const checkedStepHandler = (index) => (e) => {
-    console.log(index);
-    console.log(e.target.checked);
+
 
     const newArr = [...checkedSteps];
     newArr[index] = e.target.checked;
-    console.log(newArr);
     setCheckedSteps(newArr);
-    // console.log(checkedSteps);
   };
+
+  let checker = checkedSteps.every((item) => item === true);
+  props.getChecker(checker);
+
   return (
     <div className="mainContainer">
       <div className="mainHeader">
         <button>{props.number}</button>
         <h2>{props.title}</h2>
+        <p>{checker ? <FaCheck size={30} /> : null}</p>
       </div>
 
       <ul className="subSteps">
